@@ -8,9 +8,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://code-mentor-ai-frontend.onrender.com',
         changeOrigin: true,
       }
     }
   }
 })
+
+// 'http://localhost:5000'

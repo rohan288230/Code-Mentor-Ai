@@ -9,6 +9,7 @@ const apiClient = axios.create({
   },
 });
 
+console.log("API URL:", import.meta.env.VITE_API_URL);
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {

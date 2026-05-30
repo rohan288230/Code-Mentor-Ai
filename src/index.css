@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-dark: #0f172a;
+  --color-bg-darker: #020617;
+  --color-primary: #635bff; /* Stripe blurple */
+  --color-primary-hover: #5449e5;
+  --color-secondary: #00d4ff; /* Vibrant cyan */
+  --color-accent: #ff4d94; /* Pink accent */
+  --color-text-main: #f8fafc;
+  --color-text-muted: #8f9bb3;
+  --color-card-bg: rgba(255, 255, 255, 0.03);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg-darker)] text-[var(--color-text-main)] antialiased overflow-x-hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[var(--color-accent)] bg-clip-text text-transparent;
+  }
+  
+  .glass-card {
+    @apply bg-[var(--color-card-bg)] backdrop-blur-xl border border-white/5 rounded-2xl relative overflow-hidden transition-all duration-500;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card:hover {
+    @apply border-white/20;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .btn {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] hover:-translate-y-0.5;
+    box-shadow: 0 4px 14px 0 rgba(99, 91, 255, 0.39);
+  }
+  
+  .btn-outline {
+    @apply bg-transparent border border-white/20 text-[var(--color-text-main)] hover:bg-white/10 hover:-translate-y-0.5 hover:border-white/40;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .animate-blob {
+    animation: blob 10s infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 3s infinite;
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.mesh-bg {
+  background-color: var(--color-bg-darker);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 91, 255, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 212, 255, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 77, 148, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(99, 91, 255, 0.1) 0px, transparent 50%);
+}
+
+.grid-bg {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}

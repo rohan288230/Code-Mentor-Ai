@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiArrowLeft, FiClock, FiPlayCircle, FiCheckSquare, FiRefreshCw, FiEdit2 } from 'react-icons/fi';
+import apiClient from '../../services/apiClient';
 
 export default function SystemDesignMockInterview() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function SystemDesignMockInterview() {
   const startInterview = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`/api/interview/system-design/mock-interview?difficulty=${difficulty}&count=3`, { withCredentials: true });
+      const res = await apiClient.get(`/api/interview/system-design/mock-interview?difficulty=${difficulty}&count=3`, { withCredentials: true });
       setQuestions(res.data);
       setInProgress(true);
       setTimeLeft(45 * 60); // 45 minutes for system design
@@ -66,7 +67,7 @@ export default function SystemDesignMockInterview() {
     const percentage = Math.round((finalScore / maxScore) * 100);
     
     try {
-      await axios.post('/api/interview/system-design/mock-interview/score', {
+      await axios.post('/interview/system-design/mock-interview/score', {
         score: percentage,
         difficulty
       }, { withCredentials: true });

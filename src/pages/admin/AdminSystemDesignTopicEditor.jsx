@@ -31,13 +31,13 @@ export default function AdminSystemDesignTopicEditor() {
     try {
       setLoading(true);
       if (activeTab === 'notes') {
-        const res = await axios.get(`/api/admin/system-design/topic/${id}/notes`, { withCredentials: true });
+        const res = await apiClient.get(`/admin/system-design/topic/${id}/notes`, { withCredentials: true });
         setNotesContent(res.data.content || '');
       } else if (activeTab === 'questions') {
-        const res = await axios.get(`/api/admin/system-design/topic/${id}/questions`, { withCredentials: true });
+        const res = await apiClient.get(`/admin/system-design/topic/${id}/questions`, { withCredentials: true });
         setQuestions(res.data);
       } else if (activeTab === 'quiz') {
-        const res = await axios.get(`/api/admin/system-design/topic/${id}/quiz`, { withCredentials: true });
+        const res = await apiClient.get(`/admin/system-design/topic/${id}/quiz`, { withCredentials: true });
         if (res.data.questions) {
           setQuiz(res.data);
         }

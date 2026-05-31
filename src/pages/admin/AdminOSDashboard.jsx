@@ -19,8 +19,8 @@ export default function AdminOSDashboard() {
     try {
       setLoading(true);
       const [subjectRes, topicsRes] = await Promise.all([
-        axios.get('/api/admin/os/subject', { withCredentials: true }),
-        axios.get('/api/admin/os/topics', { withCredentials: true })
+        apiClient.get('/admin/os/subject', { withCredentials: true }),
+        apiClient.get('/admin/os/topics', { withCredentials: true })
       ]);
       setSubject(subjectRes.data);
       setTopics(topicsRes.data);

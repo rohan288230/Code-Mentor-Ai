@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiArrowLeft, FiCheckCircle, FiBookOpen, FiHelpCircle, FiEdit3, FiBookmark, FiTerminal } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
+import apiClient from '../../services/apiClient';
 
 export default function OSTopicViewer() {
   const { id } = useParams();
@@ -26,8 +27,8 @@ export default function OSTopicViewer() {
     try {
       setLoading(true);
       const [topicRes, progressRes] = await Promise.all([
-        axios.get(`/api/interview/os/topic/${id}`, { withCredentials: true }),
-        axios.get('/api/interview/os/progress', { withCredentials: true })
+        apiClient.get(`/interview/os/topic/${id}`, { withCredentials: true }),
+        apiClient.get('/interview/os/progress', { withCredentials: true })
       ]);
       setTopicData(topicRes.data);
       setProgress(progressRes.data);

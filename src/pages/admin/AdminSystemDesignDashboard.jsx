@@ -19,8 +19,8 @@ export default function AdminSystemDesignDashboard() {
     try {
       setLoading(true);
       const [subjectRes, topicsRes] = await Promise.all([
-        axios.get('/api/admin/system-design/subject', { withCredentials: true }),
-        axios.get('/api/admin/system-design/topics', { withCredentials: true })
+        apiClient.get('/admin/system-design/subject', { withCredentials: true }),
+        apiClient.get('/admin/system-design/topics', { withCredentials: true })
       ]);
       setSubject(subjectRes.data);
       setTopics(topicsRes.data);

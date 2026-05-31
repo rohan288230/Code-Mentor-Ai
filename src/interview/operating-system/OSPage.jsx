@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiBookOpen, FiCheckCircle, FiPlayCircle, FiClock, FiActivity, FiTerminal } from 'react-icons/fi';
+import apiClient from '../../services/apiClient';
 
 export default function OSPage() {
   const [subject, setSubject] = useState(null);
@@ -17,8 +18,8 @@ export default function OSPage() {
     try {
       setLoading(true);
       const [subjectRes, progressRes] = await Promise.all([
-        axios.get('/api/interview/os/topics', { withCredentials: true }),
-        axios.get('/api/interview/os/progress', { withCredentials: true })
+        apiClient.get('/interview/os/topics', { withCredentials: true }),
+        apiClient.get('/interview/os/progress', { withCredentials: true })
       ]);
       setSubject(subjectRes.data.subject);
       // Attach topics inside subject for easy rendering

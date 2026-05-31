@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiBookOpen, FiCheckCircle, FiPlayCircle, FiClock, FiActivity } from 'react-icons/fi';
+import apiClient from '../../services/apiClient';
 
 export default function ComputerNetworksPage() {
   const [subject, setSubject] = useState(null);
@@ -17,8 +18,8 @@ export default function ComputerNetworksPage() {
     try {
       setLoading(true);
       const [subjectRes, progressRes] = await Promise.all([
-        axios.get('/api/interview/computer-networks', { withCredentials: true }),
-        axios.get('/api/interview/computer-networks/progress', { withCredentials: true })
+        apiClient.get('/interview/computer-networks', { withCredentials: true }),
+        apiClient.get('/interview/computer-networks/progress', { withCredentials: true })
       ]);
       setSubject(subjectRes.data);
       setProgress(progressRes.data);

@@ -17,8 +17,8 @@ export default function AdminNetworkDashboard() {
     try {
       setLoading(true);
       const [subjectRes, topicsRes] = await Promise.all([
-        axios.get('/api/admin/network/subject', { withCredentials: true }),
-        axios.get('/api/admin/network/topics', { withCredentials: true })
+        apiClient.get('/admin/network/subject', { withCredentials: true }),
+        apiClient.get('/admin/network/topics', { withCredentials: true })
       ]);
       setSubject(subjectRes.data);
       setTopics(topicsRes.data);

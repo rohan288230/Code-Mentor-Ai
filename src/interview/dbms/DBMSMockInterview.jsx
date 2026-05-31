@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiArrowLeft, FiClock, FiPlayCircle, FiCheckSquare, FiRefreshCw, FiEdit2, FiDatabase } from 'react-icons/fi';
+import apiClient from '../../services/apiClient';
 
 export default function DBMSMockInterview() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function DBMSMockInterview() {
   const startInterview = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`/api/interview/dbms/mock-interview?difficulty=${difficulty}&count=3`, { withCredentials: true });
+      const res = await apiClient.get(`/interview/dbms/mock-interview?difficulty=${difficulty}&count=3`, { withCredentials: true });
       setQuestions(res.data);
       setInProgress(true);
       setTimeLeft(45 * 60); // 45 minutes

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiArrowLeft, FiCheckCircle, FiBookOpen, FiHelpCircle, FiEdit3, FiBookmark } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
+import apiClient from '../../services/apiClient';
 
 export default function NetworkTopicViewer() {
   const { id } = useParams();
@@ -26,8 +27,8 @@ export default function NetworkTopicViewer() {
     try {
       setLoading(true);
       const [topicRes, progressRes] = await Promise.all([
-        axios.get(`/api/interview/computer-networks/topic/${id}`, { withCredentials: true }),
-        axios.get('/api/interview/computer-networks/progress', { withCredentials: true })
+        apiClient.get(`/interview/computer-networks/topic/${id}`, { withCredentials: true }),
+        apiClient.get('/interview/computer-networks/progress', { withCredentials: true })
       ]);
       setTopicData(topicRes.data);
       setProgress(progressRes.data);

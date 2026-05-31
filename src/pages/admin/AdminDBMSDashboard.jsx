@@ -19,8 +19,8 @@ export default function AdminDBMSDashboard() {
     try {
       setLoading(true);
       const [subjectRes, topicsRes] = await Promise.all([
-        axios.get('/api/admin/dbms/subject', { withCredentials: true }),
-        axios.get('/api/admin/dbms/topics', { withCredentials: true })
+        apiClient.get('/admin/dbms/subject', { withCredentials: true }),
+        apiClient.get('/admin/dbms/topics', { withCredentials: true })
       ]);
       setSubject(subjectRes.data);
       setTopics(topicsRes.data);

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiArrowLeft, FiClock, FiCheck, FiX, FiRefreshCcw } from 'react-icons/fi';
+import apiClient from '../../services/apiClient';
 
 export default function MockInterview() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function MockInterview() {
   const startInterview = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`/api/interview/computer-networks/mock-interview?difficulty=${difficulty}&count=5`, { withCredentials: true });
+      const res = await apiClient.get(`/interview/computer-networks/mock-interview?difficulty=${difficulty}&count=5`, { withCredentials: true });
       if (res.data.length === 0) {
         alert("Not enough questions available for this difficulty yet!");
         setLoading(false);

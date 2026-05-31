@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FiArrowLeft, FiClock, FiPlayCircle, FiCheckSquare, FiEdit2, FiTerminal } from 'react-icons/fi';
+import apiClient from '../../services/apiClient';
 
 export default function OSMockInterview() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function OSMockInterview() {
   const startInterview = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`/api/interview/os/mock-questions?difficulty=${difficulty}&limit=3`, { withCredentials: true });
+      const res = await apiClient.get(`/interview/os/mock-questions?difficulty=${difficulty}&limit=3`, { withCredentials: true });
       setQuestions(res.data);
       setInProgress(true);
       setTimeLeft(45 * 60); // 45 minutes

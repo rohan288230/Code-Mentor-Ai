@@ -23,9 +23,9 @@ export default function AdminNetworkTopicEditor() {
     try {
       setLoading(true);
       const [notesRes, questionsRes, quizRes] = await Promise.all([
-        axios.get(`/api/admin/network/topic/${topicId}/notes`, { withCredentials: true }),
-        axios.get(`/api/admin/network/topic/${topicId}/questions`, { withCredentials: true }),
-        axios.get(`/api/admin/network/topic/${topicId}/quiz`, { withCredentials: true })
+        apiClient.get(`/admin/network/topic/${topicId}/notes`, { withCredentials: true }),
+        apiClient.get(`/admin/network/topic/${topicId}/questions`, { withCredentials: true }),
+        apiClient.get(`/admin/network/topic/${topicId}/quiz`, { withCredentials: true })
       ]);
       if (notesRes.data.content) setNotes(notesRes.data);
       setQuestions(questionsRes.data || []);
